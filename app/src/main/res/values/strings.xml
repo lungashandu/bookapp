@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BOOK SEARCH</string>
     <string name="searchHint">enter book topic</string>
+    <string name="datePublished">Date Published: </string>
 </resources>
