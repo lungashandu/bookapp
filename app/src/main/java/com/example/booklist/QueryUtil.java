@@ -111,7 +111,10 @@ public class QueryUtil {
                 String author = authorArray.getString(0);
                 String date = volumeInfoObject.getString("publishedDate");
 
-                Book book = new Book(title, author, date);
+                JSONObject accessInfoObject = bookObject.getJSONObject("accessInfo");
+                String url = accessInfoObject.getString("webReaderLink");
+
+                Book book = new Book(title, author, date, url);
                 books.add(book);
             }
         } catch (JSONException e) {

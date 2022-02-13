@@ -1,8 +1,11 @@
 package com.example.booklist;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -44,6 +47,17 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(mAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Book currentBook = mAdapter.getItem(position);
+                Uri bookUri = Uri.parse(currentBook.getUrl());
+
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookUri);
+                startActivity(websiteIntent);
+            }
+        });
     }
 
     private class BookAsyncTask extends AsyncTask<String, Void, List<Book>> {
